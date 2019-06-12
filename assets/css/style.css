@@ -1,0 +1,11 @@
+.jumbotron-custom {
+    padding: 2rem 1rem;
+    margin-bottom: 1rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+}
+
+/* Centering Jumbotron Text */
+.display-4, .lead{
+    text-align: center;
+}
