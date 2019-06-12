@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="card-header form-header" id="add-train-card">
-                    <form>  
+                    <form>
                         <div class="row title-row">
                             <h4 id="card-title">Add a Train!</h4>
                         </div>
@@ -52,13 +52,15 @@
                         <div class="row form-row">
                             <div class="col">
                                 <label for="dest-input">Destination</label>
-                                <input type="text" class="form-control" id="dest-input" placeholder="City or Station Name">
+                                <input type="text" class="form-control" id="dest-input"
+                                    placeholder="City or Station Name">
                             </div>
                         </div>
                         <div class="row form-row">
                             <div class="col">
                                 <label for="start-time-input">First Departure</label>
-                                <input type="text" class="form-control" id="start-time-input" placeholder="24 hour format e.g. 0800">
+                                <input type="text" class="form-control" id="start-time-input"
+                                    placeholder="24 hour format e.g. 0800">
                             </div>
                             <div class="col">
                                 <label for="freq-input">Frequency</label>
@@ -71,7 +73,7 @@
                                 <input type="text" class="form-control" id="plat-input" placeholder="F4">
                             </div>
                             <div class="col">
-                                <label for="cost-input">Train #</label>
+                                <label for="cost-input">Cost</label>
                                 <input type="text" class="form-control" id="cost-input" placeholder="$1.25">
                             </div>
                         </div>
@@ -82,7 +84,33 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                This is where my train table goes.
+
+                <container id="schedule-section">
+                    <table class="table" id="train-table">
+                        <h3> Current Train Schedule</h3>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Train #</th>
+                                <th>Line</th>
+                                <th>Destination</th>
+                                <th>First Departure</th>
+                                <th>Frequency (minutes)</th>
+                                <th>Ticket Cost ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="train-table-body">
+                            <tr>
+                                <th scope="row">123</th>
+                                <td>Downtown</td>
+                                <td>Texas Capital Building</td>
+                                <td>0600</td>
+                                <td>15 min</td>
+                                <td>$1.25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </container>
+
             </div>
         </div>
     </div>
