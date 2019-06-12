@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Train Tracker</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon-01.png" />
+    <link rel="shortcut icon" type="image/png" href="" />
     <!-- Reset CSS -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <!-- Bootstrap Link -->
@@ -31,12 +31,57 @@
         <p class="lead">Cool, I'm a train.</p>
     </div>
 
-    <div class="container">
+    <div class="container container-custom">
         <div class="row">
-            <div class="col-lg-3">
-                This is where my input box goes.
+            <div class="col-lg-4">
+                <div class="card-header form-header" id="add-train-card">
+                    <form>  
+                        <div class="row title-row">
+                            <h4 id="card-title">Add a Train!</h4>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col">
+                                <label for="train-num-input">Train #</label>
+                                <input type="text" class="form-control" id="train-num-input" placeholder="123">
+                            </div>
+                            <div class="col">
+                                <label for="line-input">Line</label>
+                                <input type="text" class="form-control" id="line-input" placeholder="Downtown">
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col">
+                                <label for="dest-input">Destination</label>
+                                <input type="text" class="form-control" id="dest-input" placeholder="City or Station Name">
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col">
+                                <label for="start-time-input">First Departure</label>
+                                <input type="text" class="form-control" id="start-time-input" placeholder="24 hour format e.g. 0800">
+                            </div>
+                            <div class="col">
+                                <label for="freq-input">Frequency</label>
+                                <input type="text" class="form-control" id="freq-input" placeholder="Minutes">
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col">
+                                <label for="plat-input">Platform</label>
+                                <input type="text" class="form-control" id="plat-input" placeholder="F4">
+                            </div>
+                            <div class="col">
+                                <label for="cost-input">Train #</label>
+                                <input type="text" class="form-control" id="cost-input" placeholder="$1.25">
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <button type="submit" class="btn btn-primary" id="add-btn">Add Train</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 This is where my train table goes.
             </div>
         </div>
