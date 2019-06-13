@@ -1,12 +1,15 @@
 body, html {
     width: 100%;
+    font-family: 'Quicksand', sans-serif;
+    background-image: url(../images/brick.jpg);
 }
 
 .jumbotron-custom {
     padding: 2rem 1rem;
     margin-bottom: 1rem;
-    background-color: #e9ecef;
+    background-color: #2580B3;
     border-radius: .3rem;
+    color: white;
 }
 
 /* Centering Jumbotron Text */
@@ -22,14 +25,16 @@ body, html {
         margin-left: 20px;
 }
 
-.row {
+.fa-train {
+    color:white;
+    margin-right: 15px;
 }
 
 /* Start Input Card */
 #add-train-card {
     width: 100%;
     border-radius: 10px;
-    background-color: rgb(115, 115, 192);
+    background-color: #218ECC;
     padding: 1.5em 1em;
     color: white;
 }
@@ -49,6 +54,37 @@ body, html {
 #add-btn {
     margin-left: 8px;
 }
+
+/* Start Table Section */
+#train-table {
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.87);
+}
+
+#train-table thead {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+#table-header {
+    width: 100%;
+    height: 60px;
+    background-color: #FF434B;
+    color: white;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#table-header h3 {
+    margin-left: 20px;
+    margin-top: 12px;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: rgb(255, 123, 130);
+}
+
 
 @media (min-width: 1200px) {
     .container-custom {

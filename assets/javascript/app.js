@@ -13,6 +13,12 @@ var span = document.getElementsByClassName("close")[0];
 // FUNCTIONS-GLOBAL
 //================================================================
 
+//Displays current time to header
+$(document).ready(function() {
+    var currentTime = moment().format("HH:mm");
+    $("#time-header").text("Current Time: " + currentTime);
+});
+
 // Only allows # to be typed
 function isNumber(evt) {
     var iKeyCode = (evt.which) ? evt.which : evt.keyCode
