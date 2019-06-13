@@ -44,40 +44,42 @@
                         <div class="row form-row">
                             <div class="col">
                                 <label for="num-input">Train #</label>
-                                <input type="text" maxlength="3" 
-                                        class="form-control" id="num-input" placeholder="123" required>
+                                <input type="text" maxlength="3" class="form-control" id="num-input" placeholder="123"
+                                    onkeypress="javascript:return isNumber(event)">
                             </div>
                             <div class="col">
                                 <label for="line-input">Line</label>
-                                <input type="text" class="form-control" id="line-input" placeholder="Downtown" required>
+                                <input type="text" class="form-control" id="line-input" placeholder="Downtown">
                             </div>
                         </div>
                         <div class="row form-row">
                             <div class="col">
                                 <label for="dest-input">Destination</label>
                                 <input type="text" class="form-control" id="dest-input"
-                                    placeholder="City or Station Name" required>
+                                    placeholder="City or Station Name">
                             </div>
                         </div>
                         <div class="row form-row">
                             <div class="col">
                                 <label for="start-time-input">First Departure</label>
-                                <input type="text" maxlength="4" class="form-control" id="start-time-input" 
-                                        placeholder="24 hour format e.g. 0800" required>
+                                <input type="text" maxlength="4" class="form-control" id="start-time-input"
+                                    placeholder="24 hour format e.g. 0800"
+                                    onkeypress="javascript:return isNumber(event)">
                             </div>
                             <div class="col">
                                 <label for="freq-input">Frequency</label>
-                                <input type="text" maxlength="2" class="form-control" id="freq-input" placeholder="Minutes" required>
+                                <input type="text" maxlength="2" class="form-control" id="freq-input"
+                                    placeholder="Minutes">
                             </div>
                         </div>
                         <div class="row form-row">
                             <div class="col">
                                 <label for="plat-input">Platform</label>
-                                <input type="text" maxlength="3" class="form-control" id="plat-input" placeholder="F4" required>
+                                <input type="text" maxlength="3" class="form-control" id="plat-input" placeholder="F4">
                             </div>
                             <div class="col">
                                 <label for="cost-input">Cost</label>
-                                <input type="text" class="form-control" id="cost-input" placeholder="$1.25" required>
+                                <input type="text" class="form-control" id="cost-input" placeholder="$1.25">
                             </div>
                         </div>
                         <div class="row form-row">
@@ -103,16 +105,7 @@
                             </tr>
                         </thead>
                         <tbody id="train-table-body">
-                            <!-- <tr>
-                                <!-- <th id="row1">123</th>
-                                <td>Downtown</td>
-                                <td>Texas Capital Building</td>
-                                <td>0600</td>
-                                <td>4 min</td>
-                                <td>15 min</td>
-                                <td>H7</td>
-                                <td>$1.25</td> 
-                            </tr> -->
+                            <!-- Data goes here -->
                         </tbody>
                     </table>
                 </container>
@@ -121,16 +114,35 @@
         </div>
     </div>
 
-    <!-- The Modal -->
-<div id="modal-empty" class="modal">
+    <!-- Modals -->
 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Please Fill in the Entire Form</p>
+    <!-- Empty Input Modal -->
+    <div id="modal-empty" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Please Fill in the Entire Form.</p>
+        </div>
     </div>
-  
-  </div>
+
+    <!-- Only Numbers Modal -->
+    <div id="modal-num" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Please Enter only Numbers.</p>
+        </div>
+    </div>
+
+    <!-- Train Added Modal -->
+    <div id="modal-trainadd" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Your Train was Added!</p>
+        </div>
+    </div>
+
     <!-- Custom Javascript Tag -->
     <script src="assets/javascript/app.js"></script>
 </body>
