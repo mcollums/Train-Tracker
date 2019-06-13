@@ -22,6 +22,8 @@
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
     <!-- Firebase Database -->
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+    <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
 
 <body>
@@ -41,8 +43,9 @@
                         </div>
                         <div class="row form-row">
                             <div class="col">
-                                <label for="train-num-input">Train #</label>
-                                <input type="text" class="form-control" id="train-num-input" placeholder="123">
+                                <label for="num-input">Train #</label>
+                                <input type="text" maxlength="3" onkeypress="javascript:return isNumber(event)" 
+                                        class="form-control" id="num-input" placeholder="123">
                             </div>
                             <div class="col">
                                 <label for="line-input">Line</label>
@@ -59,18 +62,18 @@
                         <div class="row form-row">
                             <div class="col">
                                 <label for="start-time-input">First Departure</label>
-                                <input type="text" class="form-control" id="start-time-input"
-                                    placeholder="24 hour format e.g. 0800">
+                                <input type="text" maxlength="4" onkeypress="javascript:return isNumber(event)" 
+                                    class="form-control" id="start-time-input" placeholder="24 hour format e.g. 0800">
                             </div>
                             <div class="col">
                                 <label for="freq-input">Frequency</label>
-                                <input type="text" class="form-control" id="freq-input" placeholder="Minutes">
+                                <input type="text" maxlength="2" onkeypress="javascript:return isNumber(event)" class="form-control" id="freq-input" placeholder="Minutes">
                             </div>
                         </div>
                         <div class="row form-row">
                             <div class="col">
                                 <label for="plat-input">Platform</label>
-                                <input type="text" class="form-control" id="plat-input" placeholder="F4">
+                                <input type="text" maxlength="3" class="form-control" id="plat-input" placeholder="F4">
                             </div>
                             <div class="col">
                                 <label for="cost-input">Cost</label>
@@ -95,6 +98,7 @@
                                 <th>Next Arrival</th>
                                 <th>Time to Arrival</th>
                                 <th>Frequency (minutes)</th>
+                                <th>Platform</th>
                                 <th>Ticket Cost ($)</th>
                             </tr>
                         </thead>
@@ -106,6 +110,7 @@
                                 <td>0600</td>
                                 <td>4 min</td>
                                 <td>15 min</td>
+                                <td>H7</td>
                                 <td>$1.25</td>
                             </tr>
                         </tbody>
