@@ -1,42 +1,47 @@
 // MODALS
 //================================================================
+
 //Get the modal for an empty input box
 var modalEmpty = document.getElementById("modal-empty");
 var modalAddTrain = document.getElementById("modal-trainadd");
-var modalNumber = document.getElementById("modal-empty");
-
+var modalNumber = document.getElementById("modal-num");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function () {
-//     modal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-
 
 // FUNCTIONS-GLOBAL
 //================================================================
+
 // Only allows # to be typed
 function isNumber(evt) {
     var iKeyCode = (evt.which) ? evt.which : evt.keyCode
     if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57)) {
-        alert("Only Numbers, Please");
+        //Displays if anything but numbers are entered
+        modalNumber.setAttribute("style","display: block;");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modalNumber.setAttribute("style","display: none;");
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modalNumber) {
+                modalNumber.setAttribute("style","display: none;");
+            }
+        }
+        //Stops Function
         return false;
     } else {
+        //Continues Function
         return true;
     }
 }
 
 // FIREBASE CONFIG
 //================================================================
+
 var config = {
     apiKey: "AIzaSyBcji1-J7P-BZfCfZfjaJpyWb9JH9Oa2Qk",
     authDomain: "train-tracker-1eecf.firebaseapp.com",
@@ -70,28 +75,20 @@ $("#add-btn").on("click", function (event) {
 
     //If any input boxes are blank, a modal pops up anf function stops
     if (trainNum === "" || trainLine === "" || trainDest === "" || trainDept === "" || trainFreq === "" || trainPlatform === "" || trainCost === "") {
-        modalEmpty.style.display = "block";
+        //Displays the #modal-empty if there are any empty inputs
+        modalEmpty.setAttribute("style","display: block;");
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
-            modalEmpty.style.display = "none";
+            modalEmpty.setAttribute("style","display: none;");
         }
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modalEmpty) {
-                modalEmpty.style.display = "none";
+                modalEmpty.setAttribute("style","display: none;");
             }
         }
         return;
     }
-
-    // Testing with console.log
-    console.log(trainNum);
-    console.log(trainLine);
-    console.log(trainDest);
-    console.log(trainDept);
-    console.log(trainFreq);
-    console.log(trainPlatform);
-    console.log(trainCost);
 
     //If there's no $ in the cost, this adds one
     if (trainCost.indexOf('$') < 0) {
@@ -113,17 +110,29 @@ $("#add-btn").on("click", function (event) {
     //Push these values to the database
     database.ref().push(newTrain);
 
-    modalAddTrain.style.display = "block";
+    //When we add a train to the database, the module lets the user know
+    modalAddTrain.setAttribute("style","display: block;");
+
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
-        modalAddTrain.style.display = "none";
+        modalAddTrain.setAttribute("style","display: none;");
     }
+
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modalAddTrain) {
-            modalAddTrain.style.display = "none";
+            modalAddTrain.setAttribute("style","display: none;");
         }
     }
+
+    // Testing with console.log
+    console.log(trainNum);
+    console.log(trainLine);
+    console.log(trainDest);
+    console.log(trainDept);
+    console.log(trainFreq);
+    console.log(trainPlatform);
+    console.log(trainCost);
 
     //Emptying all the imput boxes when finished
     $("#num-input").val("");
@@ -147,9 +156,11 @@ database.ref().on("child_added", function (childSnapshot) {
     var platform = childSnapshot.val().platform;
     var cost = childSnapshot.val().cost;
 
+    //Converts the user entered information and stores it
     firstDeptConverted = moment(firstDept, "HH:mm");
     console.log("First Departure Converted: " + firstDeptConverted);
 
+    //Gets the current time and formats it
     var currentTime = moment();
     console.log("Current Time: " + moment(currentTime).format("HH:mm"));
 
