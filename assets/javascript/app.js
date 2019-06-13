@@ -1,3 +1,42 @@
+// MODALS
+//================================================================
+//Get the modal for an empty input box
+var modalEmpty = document.getElementById("modal-empty");
+var modalAddTrain = document.getElementById("modal-trainadd");
+var modalNumber = document.getElementById("modal-empty");
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//     modal.style.display = "none";
+// }
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function (event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+
+
+// FUNCTIONS-GLOBAL
+//================================================================
+// Only allows # to be typed
+function isNumber(evt) {
+    var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+    if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57)) {
+        alert("Only Numbers, Please");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// FIREBASE CONFIG
+//================================================================
 var config = {
     apiKey: "AIzaSyBcji1-J7P-BZfCfZfjaJpyWb9JH9Oa2Qk",
     authDomain: "train-tracker-1eecf.firebaseapp.com",
@@ -8,50 +47,13 @@ var config = {
     appId: "1:569769386434:web:272449e62e4fddd3"
 };
 
+//Initialize firebase with provided apiKey and documentation
 firebase.initializeApp(config);
 
+//Setting the variable database to be my firebase
 var database = firebase.database();
 
-var modal = document.getElementById("modal-empty");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// var num = "";
-// var line = "";
-// var destination = "";
-// var firstDept = "";
-// var freq = "";
-// var platform = ""
-// var cost = 0;
-// var currentTime = 0; //Will get this value from moment.js? Timestamp?
-
-
-//Only allows # to be typed
-// function isNumber(evt) {
-//     var iKeyCode = (evt.which) ? evt.which : evt.keyCode
-//     if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57)) {
-//         alert("Only Numbers, Please");
-//         return false;
-//     } else {
-//         return true;
-//     }
-// }
-
-// onkeypress="javascript:return isNumber(event)"
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-  }
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-
+//When the add button is pressed...
 $("#add-btn").on("click", function (event) {
 
     //Prevents the add button from reloading the page
@@ -66,26 +68,34 @@ $("#add-btn").on("click", function (event) {
     var trainPlatform = $("#plat-input").val();
     var trainCost = $("#cost-input").val();
 
+    //If any input boxes are blank, a modal pops up anf function stops
     if (trainNum === "" || trainLine === "" || trainDest === "" || trainDept === "" || trainFreq === "" || trainPlatform === "" || trainCost === "") {
-        modal.style.display = "block";
+        modalEmpty.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modalEmpty.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modalEmpty) {
+                modalEmpty.style.display = "none";
+            }
+        }
         return;
     }
 
-     // Testing with console.log
-     console.log(trainNum);
-     console.log(trainLine);
-     console.log(trainDest);
-     console.log(trainDept);
-     console.log(trainFreq);
-     console.log(trainPlatform);
-     console.log(trainCost);
+    // Testing with console.log
+    console.log(trainNum);
+    console.log(trainLine);
+    console.log(trainDest);
+    console.log(trainDept);
+    console.log(trainFreq);
+    console.log(trainPlatform);
+    console.log(trainCost);
 
-     //If there's no $ in the cost, this adds one
+    //If there's no $ in the cost, this adds one
     if (trainCost.indexOf('$') < 0) {
-        console.log("There's no $ sign!");
         trainCost = "$" + trainCost;
-    }   else {
-        console.log("There is a $ sign!");
     }
 
     //Creates new local object with new keys/values
@@ -103,7 +113,19 @@ $("#add-btn").on("click", function (event) {
     //Push these values to the database
     database.ref().push(newTrain);
 
-    alert("Train Added!");
+    modalAddTrain.style.display = "block";
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modalAddTrain.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modalAddTrain) {
+            modalAddTrain.style.display = "none";
+        }
+    }
+
+    //Emptying all the imput boxes when finished
     $("#num-input").val("");
     $("#line-input").val("");
     $("#dest-input").val("");
@@ -126,10 +148,10 @@ database.ref().on("child_added", function (childSnapshot) {
     var cost = childSnapshot.val().cost;
 
     firstDeptConverted = moment(firstDept, "HH:mm");
-    console.log(firstDeptConverted);
+    console.log("First Departure Converted: " + firstDeptConverted);
 
     var currentTime = moment();
-    console.log("Current Time: " + moment(currentTime).format("hh:mm"));
+    console.log("Current Time: " + moment(currentTime).format("HH:mm"));
 
     //Difference Between the Current Time and the First Departure
     var timeDifference = currentTime.diff(moment(firstDeptConverted), "minutes");
@@ -145,7 +167,7 @@ database.ref().on("child_added", function (childSnapshot) {
 
     //Next Train
     var nextTrain = moment().add(minutesRemain, "minutes");
-    console.log("Next Train: " + nextTrain);
+    console.log("Next Train: " + moment(nextTrain).format("HH:mm"));
 
 
     // Testing with consolelog
@@ -162,7 +184,7 @@ database.ref().on("child_added", function (childSnapshot) {
         $("<td>").text(num),
         $("<td>").text(line),
         $("<td>").text(destination),
-        $("<td>").text(nextTrain.format("hh:mm")),
+        $("<td>").text(moment(nextTrain).format("HH:mm")),
         $("<td>").text(minutesRemain + " minutes"),
         $("<td>").text(freq + " minutes"),
         $("<td>").text(platform),
