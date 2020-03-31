@@ -131,15 +131,6 @@ $("#add-btn").on("click", function (event) {
         }
     }
 
-    // Testing with console.log
-    console.log(trainNum);
-    console.log(trainLine);
-    console.log(trainDest);
-    console.log(trainDept);
-    console.log(trainFreq);
-    console.log(trainPlatform);
-    console.log(trainCost);
-
     //Emptying all the imput boxes when finished
     $("#num-input").val("");
     $("#line-input").val("");
@@ -164,37 +155,21 @@ database.ref().on("child_added", function (childSnapshot) {
 
     //Converts the user entered information and stores it
     firstDeptConverted = moment(firstDept, "HH:mm");
-    console.log("First Departure Converted: " + firstDeptConverted);
 
     //Gets the current time and formats it
     var currentTime = moment();
-    console.log("Current Time: " + moment(currentTime).format("HH:mm"));
 
     //Difference Between the Current Time and the First Departure
     var timeDifference = currentTime.diff(moment(firstDeptConverted), "minutes");
-    console.log("Difference in Time: " + timeDifference);
 
     //Time Remainder
     var timeRemainder = timeDifference % freq;
-    console.log("Time Remainder: " + timeRemainder);
 
     //Minutes Until Train
     var minutesRemain = freq - timeRemainder;
-    console.log("Minutes Remaining: " + minutesRemain);
 
     //Next Train
     var nextTrain = moment().add(minutesRemain, "minutes");
-    console.log("Next Train: " + moment(nextTrain).format("HH:mm"));
-
-
-    // Testing with consolelog
-    console.log(num);
-    console.log(line);
-    console.log(destination);
-    console.log(firstDept);
-    console.log(freq);
-    console.log(platform);
-    console.log(cost);
 
     // Create the new row
     var newRow = $("<tr>").append(
